@@ -2,6 +2,7 @@ using AssetSystem;
 using Cysharp.Threading.Tasks;
 using SceneSystem;
 using ServiceLocatorSystem;
+using Systems;
 using UnityEngine;
 using WindowsSystem;
 using WindowsSystem.Concrete;
@@ -18,6 +19,7 @@ namespace BootSystem
             _timeMeasure.CommitStartTime();
             SceneController.LoadScene(SceneType.Gameplay);
             ServiceLocatorController.Register(() => new AssetSystemLocator());
+            ServiceLocatorController.Register(() => new InputSystemLocator());
             await InitializeWindowsSystem();
             _timeMeasure.CommitEndTime();
         }

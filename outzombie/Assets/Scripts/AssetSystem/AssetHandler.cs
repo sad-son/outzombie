@@ -1,11 +1,13 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using Object = UnityEngine.Object;
 
 namespace AssetSystem
 {
-    public class AssetHandler : IAssetSystemInstance
+    public class AssetHandler : IAssetSystemInstance, IDisposable
     {
         public async UniTask<(AsyncOperationHandle<GameObject> asyncOperationHandle, GameObject asset)> LoadAssetAsync(object key)
         {
@@ -27,6 +29,11 @@ namespace AssetSystem
             
             var component = Object.Instantiate(loadPair.asset, parent, instantiateInWorldSpace);
             return component;
+        }
+
+        public void Dispose()
+        {
+            
         }
     }
 }
