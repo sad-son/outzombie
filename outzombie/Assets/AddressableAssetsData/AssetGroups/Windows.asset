@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Windows
+  m_EditorClassIdentifier: 
+  m_GroupName: Windows
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 715a476acf8ed78408f9f90686a0839b
+  m_SerializeEntries:
+  - m_GUID: 4c51d2858109bfb4d92bb60507cbb634
+    m_Address: WindowsController
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 96b9a46b8f3bbf549ac7d931bb75bce5
+    m_Address: GameplayHUD
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 19464f4b25ecb734181bd5a88990bcbd
+    m_Address: CheatsWindow
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7c9a921fe933926439beb5ef7f090923
+    m_Address: ExamWindow
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 1a2be2b8369afdb49aad2de53e64df54, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 9ad266a1a40ad594c88a7d613ed6b4f7, type: 2}
+    - {fileID: 11400000, guid: 1068d6528c438924cae79906c2e64c1c, type: 2}
