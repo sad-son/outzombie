@@ -13,15 +13,8 @@ MonoBehaviour:
   m_Name: SpriteAtlases
   m_EditorClassIdentifier: 
   m_GroupName: SpriteAtlases
-  m_Data:
-    m_SerializedData: []
   m_GUID: db26eeb4e0b03244ebb77bf1c6f91980
-  m_SerializeEntries:
-  - m_GUID: f02b0e9abf5a476419fa751e74fae10c
-    m_Address: Assets/SpriteAtlases/TestSpriteAtlas.spriteatlas
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 1a2be2b8369afdb49aad2de53e64df54, type: 2}
   m_SchemaSet:
