@@ -18,8 +18,8 @@ namespace BootSystem
             _timeMeasure = new TimeMeasure(this);
             _timeMeasure.CommitStartTime();
             SceneController.LoadScene(SceneType.Gameplay);
-            ServiceLocatorController.Register(() => new AssetSystemLocator());
-            ServiceLocatorController.Register(() => new InputSystemLocator());
+            ServiceLocatorController.Register(new AssetSystemLocator());
+            ServiceLocatorController.Register(new InputSystemLocator());
             await InitializeWindowsSystem();
             _timeMeasure.CommitEndTime();
         }
