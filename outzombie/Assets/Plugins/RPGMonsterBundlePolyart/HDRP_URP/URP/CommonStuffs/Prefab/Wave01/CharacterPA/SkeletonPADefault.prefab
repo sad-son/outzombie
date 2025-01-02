@@ -94,7 +94,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6285209290496798470}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -28.102303, y: -90.01403, z: 180.00656}
 --- !u!1 &6285209290496832134
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,7 +125,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6285209290496798470}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 28.102411, y: 90.01478, z: 0.006913729}
 --- !u!1 &6285209290496832136
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,7 +283,7 @@ Transform:
   m_Children:
   - {fileID: 6285209290496798552}
   m_Father: {fileID: 6285209290496798486}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 83.14808, y: -86.89023, z: -177.50664}
 --- !u!1 &6285209290496832288
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,7 +480,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6285209290496798470}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -28.102278, y: -89.986145, z: -180.00648}
 --- !u!1 &6285209290496832300
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,7 +511,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6285209290496798470}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 28.102592, y: 89.98393, z: -0.0075029247}
 --- !u!1 &6285209290496832302
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,9 +587,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6285209290496798482}
-  - component: {fileID: 6285209290506305774}
   - component: {fileID: 4015678937708948861}
   - component: {fileID: 4830305276609162007}
+  - component: {fileID: 3135366197414933236}
   m_Layer: 0
   m_Name: SkeletonPADefault
   m_TagString: Untagged
@@ -614,28 +614,6 @@ Transform:
   - {fileID: 6285209290496798556}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &6285209290506305774
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6285209290496832306}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: b76bf1c8faa444ce8d02f6db4364d2ac, type: 3}
-  m_Controller: {fileID: 9100000, guid: b944050466ca43dc83648f27a6defdb9, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &4015678937708948861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -669,15 +647,15 @@ MonoBehaviour:
       transitions: []
       actionData:
         actionNames:
-        - HutongGames.PlayMaker.Actions.ControllerMove
         - HutongGames.PlayMaker.Actions.CallMethod
+        - HutongGames.PlayMaker.Actions.SetAnimatorTrigger
         customNames:
         - 
         - 
         actionEnabled: 0101
         actionIsOpen: 0101
-        actionStartIndex: 0000000004000000
-        actionHashCodes: 63b78b04ca51e900
+        actionStartIndex: 0000000007000000
+        actionHashCodes: ca51e9009bd6f801
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams:
@@ -702,6 +680,12 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: SetDestination
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: Run
         fsmObjectParams:
         - useVariable: 0
           name: 
@@ -763,37 +747,21 @@ MonoBehaviour:
         fsmEnumParams: []
         fsmFloatParams: []
         fsmIntParams: []
-        fsmBoolParams:
-        - useVariable: 0
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: 1
+        fsmBoolParams: []
         fsmVector2Params: []
-        fsmVector3Params:
-        - useVariable: 1
-          name: V
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: {x: 0, y: 0, z: 0}
+        fsmVector3Params: []
         fsmColorParams: []
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: 000000000000
+        byteData: 0000
         arrayParamSizes: 01000000
         arrayParamTypes:
         - HutongGames.PlayMaker.FsmVar
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 140000001c000000070000001100000018000000120000000c00000027000000270000000100000001000000
+        paramDataType: 18000000120000000c000000270000002700000001000000010000001400000012000000
         paramName:
-        - gameObject
-        - moveVector
-        - space
-        - perSecond
         - behaviour
         - methodName
         - parameters
@@ -801,8 +769,10 @@ MonoBehaviour:
         - storeResult
         - everyFrame
         - manualUI
-        paramDataPos: 0000000000000000000000000000000000000000000000000000000000000000010000000400000005000000
-        paramByteDataSize: 0000000000000000040000000000000000000000000000000000000000000000000000000100000001000000
+        - gameObject
+        - trigger
+        paramDataPos: 000000000000000000000000000000000100000000000000010000000000000001000000
+        paramByteDataSize: 000000000000000000000000000000000000000001000000010000000000000000000000
     events:
     - name: FINISHED
       isSystemEvent: 1
@@ -911,6 +881,28 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!95 &3135366197414933236
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6285209290496832306}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: b76bf1c8faa444ce8d02f6db4364d2ac, type: 3}
+  m_Controller: {fileID: 9100000, guid: b944050466ca43dc83648f27a6defdb9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6285209290496832308
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,7 +1037,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6285209290496798494}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 89.10343, y: -90, z: 180}
 --- !u!1 &6285209290496832316
 GameObject:
   m_ObjectHideFlags: 0
@@ -1076,7 +1068,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6285209290496798464}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.104744, y: -90, z: 0}
 --- !u!1 &6285209290496832318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1203,7 +1195,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6285209290496798470}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 28.10135, y: 90, z: 0}
 --- !u!1 &6285209290496832326
 GameObject:
   m_ObjectHideFlags: 0
