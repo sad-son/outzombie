@@ -15,5 +15,12 @@ namespace GameplayAssembly.HealthSystem
                 return serializedData.health / serializedData.maxHealth;
             }
         }
+
+        protected override void Initialize()
+        {
+            base.Initialize();
+            ref var serializedData = ref GetData();
+            serializedData.health = serializedData.maxHealth;
+        }
     }
 }

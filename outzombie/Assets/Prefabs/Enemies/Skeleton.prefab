@@ -2470,8 +2470,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializedData:
-    health: 100
-    maxHealth: 100
+    health: 5
+    maxHealth: 55
 --- !u!224 &2540989733113293543 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7549146502472829225, guid: 64731391435630f4996775ff398bd95f, type: 3}

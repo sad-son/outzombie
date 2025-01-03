@@ -44,7 +44,6 @@ namespace Plugins.procedural_healthbar_shader.HealthBar.Components
         private float _oldHealthNormalized;
         private void Update()
         {
-            Debug.LogError($"SAD _oldHealthNormalized {_oldHealthNormalized} _healthProvider.healthNormalized {_healthProvider.healthNormalized}");
             if (Time.frameCount % 2 == 0 && !Mathf.Approximately(_oldHealthNormalized, _healthProvider.healthNormalized))
             {
                 SetMaterialData();
