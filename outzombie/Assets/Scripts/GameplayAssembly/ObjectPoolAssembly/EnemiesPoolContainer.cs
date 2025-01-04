@@ -23,6 +23,11 @@ namespace Gameplay.ObjectPoolAssembly
         {
             _enemyRoot = null;
         }
+
+        public bool IsEmpty()
+        {
+            return _currentPools.Count == 0;
+        }
         
         public async UniTaskVoid Initialize(PoolObjectComponent poolObjectComponent)
         {
@@ -33,16 +38,26 @@ namespace Gameplay.ObjectPoolAssembly
             {
                 var obj = await _assetHandler.InstantiateAndBind(poolObjectComponent.key, _enemyRoot, false);
                 obj.gameObject.SetActive(false);
-                
+
                 if (!_currentPools.TryGetValue(poolObjectComponent.key, out var pool))
+                {
                     pool = new Queue<GameObject>();
+                    _currentPools[poolObjectComponent.key] = pool;
+                }
                 
+                Debug.LogError($"Initialize {poolObjectComponent.key} _currentPools.Count {_currentPools.Count}");
                 pool.Enqueue(obj);
             }
         }
 
         public async UniTask<GameObject> Get(string key) 
         {
+            Debug.LogError($"Get {key} _currentPools.Count {_currentPools.Count}");
+
+            foreach (var kvp in _currentPools)
+            {
+                Debug.LogError($"Get _currentPools  {kvp.Key} {kvp.Value.Count}");
+            }
             if (!_currentPools.TryGetValue(key, out var pool))
                 return default;
             

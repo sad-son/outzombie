@@ -1,4 +1,5 @@
 ﻿using System;
+using Gameplay.SpawnAssembly;
 using GameplayAssembly.HealthSystem;
 using Scellecs.Morpeh;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace Gameplay
 
             var systemGroup = world.CreateSystemsGroup();
             systemGroup.AddSystem(new HealthSystem());
+            systemGroup.AddSystem(new SpawnWavesSystem());
             
             world.AddSystemsGroup(order: 0, systemGroup);
         }
