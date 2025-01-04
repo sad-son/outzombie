@@ -2,7 +2,6 @@
 using Cysharp.Threading.Tasks;
 using Gameplay.ObjectPoolAssembly;
 using Scellecs.Morpeh;
-using Scellecs.Morpeh.Providers;
 using ServiceLocatorSystem;
 using UnityEngine;
 
@@ -13,7 +12,7 @@ namespace Gameplay.SpawnAssembly
         public World World { get; set; }
         
         private Filter _filter;
-        private Stash<SpawnBuildingComponent> _stash;
+        private Stash<BuildingComponent> _stash;
         private EnemiesPoolContainer _enemiesPoolContainer;
         
         public void Dispose()
@@ -23,8 +22,8 @@ namespace Gameplay.SpawnAssembly
 
         public void OnAwake()
         {
-            _filter = World.Filter.With<SpawnBuildingComponent>().Build();
-            _stash = World.GetStash<SpawnBuildingComponent>();
+            _filter = World.Filter.With<BuildingComponent>().Build();
+            _stash = World.GetStash<BuildingComponent>();
             _enemiesPoolContainer = ServiceLocatorController.Resolve<GameplaySystemLocator>()
                 .Resolve<EnemiesPoolContainer>();
         }
@@ -36,7 +35,7 @@ namespace Gameplay.SpawnAssembly
             foreach (var entity in _filter)
             {
                 ref var spawnBuildingComponent = ref _stash.Get(entity);
-                var spawnPosition = spawnBuildingComponent.building.transform.position;
+                var spawnPosition = spawnBuildingComponent.building.transform.position + new Vector3(0, 0, -2);
                 
                 foreach (var wave in spawnBuildingComponent.waves)
                 {

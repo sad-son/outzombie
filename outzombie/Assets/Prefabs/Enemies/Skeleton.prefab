@@ -590,6 +590,7 @@ GameObject:
   - component: {fileID: 4015678937708948861}
   - component: {fileID: 4830305276609162007}
   - component: {fileID: 3135366197414933236}
+  - component: {fileID: 5410604994000216227}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Untagged
@@ -655,7 +656,7 @@ MonoBehaviour:
         - 
         actionEnabled: 0101
         actionIsOpen: 0101
-        actionStartIndex: 0000000007000000
+        actionStartIndex: 0000000006000000
         actionHashCodes: ca51e9009bd6f801
         unityObjectParams: []
         fsmGameObjectParams: []
@@ -680,7 +681,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: SetDestination
+          value: AddMoveToBuildingZone
         - useVariable: 0
           name: 
           tooltip: 
@@ -693,37 +694,13 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          typeName: UnityEngine.AI.NavMeshAgent
-          value: {fileID: 4830305276609162007}
+          typeName: Gameplay.EnemiesLogicAssembly.EnemyProvider
+          value: {fileID: 5410604994000216227}
         fsmVarParams:
         - variableName: 
-          objectType: UnityEngine.Object
+          objectType: 
           useVariable: 0
-          type: 6
-          floatValue: 0
-          intValue: 0
-          boolValue: 0
-          stringValue: 
-          vector4Value: {x: 0, y: 0, z: 10, w: 0}
-          objectReference: {fileID: 0}
-          arrayValue:
-            useVariable: 0
-            name: 
-            tooltip: 
-            showInInspector: 0
-            networkSync: 0
-            type: -1
-            objectTypeName: 
-            floatValues: []
-            intValues: 
-            boolValues: 
-            stringValues: []
-            vector4Values: []
-            objectReferences: []
-        - variableName: 
-          objectType: UnityEngine.Object
-          useVariable: 1
-          type: 2
+          type: -1
           floatValue: 0
           intValue: 0
           boolValue: 0
@@ -756,24 +733,23 @@ MonoBehaviour:
         fsmQuaternionParams: []
         stringParams: []
         byteData: 0000
-        arrayParamSizes: 01000000
+        arrayParamSizes: 00000000
         arrayParamTypes:
         - HutongGames.PlayMaker.FsmVar
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 18000000120000000c000000270000002700000001000000010000001400000012000000
+        paramDataType: 18000000120000000c0000002700000001000000010000001400000012000000
         paramName:
         - behaviour
         - methodName
         - parameters
-        - 
         - storeResult
         - everyFrame
         - manualUI
         - gameObject
         - trigger
-        paramDataPos: 000000000000000000000000000000000100000000000000010000000000000001000000
-        paramByteDataSize: 000000000000000000000000000000000000000001000000010000000000000000000000
+        paramDataPos: 0000000000000000000000000000000000000000010000000000000001000000
+        paramByteDataSize: 0000000000000000000000000000000001000000010000000000000000000000
     events:
     - name: FINISHED
       isSystemEvent: 1
@@ -904,6 +880,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5410604994000216227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6285209290496832306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90bf28e29014f6b9e47da6ca43590f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 4830305276609162007}
 --- !u!1 &6285209290496832308
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@
 
 namespace Gameplay.SpawnAssembly
 {
-    public class SpawnBuildingProvider : MonoProvider<SpawnBuildingComponent>
+    public class SpawnBuildingProvider : MonoProvider<BuildingComponent>
     {
         protected override void Initialize()
         {
