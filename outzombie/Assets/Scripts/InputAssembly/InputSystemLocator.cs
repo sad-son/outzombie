@@ -6,7 +6,7 @@ namespace Systems
     {
         protected override void RegisterTypes()
         {
-            Register(() => new InputManager());
+            Register(new InputManager());
         }
     }
 }

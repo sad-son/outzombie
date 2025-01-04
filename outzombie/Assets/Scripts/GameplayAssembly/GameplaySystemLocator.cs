@@ -15,7 +15,7 @@ namespace Gameplay
 
         protected override void RegisterTypes()
         {
-            Register(() => new EnemiesPoolContainer(_enemyRoot));
+            Register(new EnemiesPoolContainer(_enemyRoot));
         }
     }
 }

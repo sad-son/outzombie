@@ -7,7 +7,7 @@ namespace AssetSystem
 
         protected override void RegisterTypes()
         {
-            Register(() => new AssetHandler());
+            Register(new AssetHandler());
         }
     }
 }

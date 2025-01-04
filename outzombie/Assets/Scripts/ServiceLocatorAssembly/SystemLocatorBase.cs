@@ -5,11 +5,11 @@ namespace ServiceLocatorSystem
 {
     public abstract class SystemLocatorBase<TQueryType> : IDisposable
     {
-        private readonly Dictionary<Type, Func<IDisposable>> _services;
+        private readonly Dictionary<Type, IDisposable> _services;
 
         protected SystemLocatorBase()
         {
-            _services = new Dictionary<Type, Func<IDisposable>>();
+            _services = new Dictionary<Type, IDisposable>();
             RegisterTypesInternal();
         }
 
@@ -17,7 +17,7 @@ namespace ServiceLocatorSystem
         {
             foreach (var service in _services)
             {
-                service.Value().Dispose();
+                service.Value.Dispose();
             }
         }
         
@@ -30,12 +30,12 @@ namespace ServiceLocatorSystem
         
         public T Resolve<T>() where T : TQueryType
         {
-            return (T)_services[typeof(T)]();
+            return (T)_services[typeof(T)];
         }
         
-        protected void Register<T>(Func<T> resolver) where T : TQueryType, IDisposable
+        protected void Register<T>(T instance) where T : TQueryType, IDisposable
         {
-            _services[typeof(T)] = () => resolver();
+            _services[typeof(T)] = instance;
         }
     }
 }
