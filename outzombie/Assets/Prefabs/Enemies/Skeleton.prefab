@@ -590,7 +590,7 @@ GameObject:
   - component: {fileID: 4015678937708948861}
   - component: {fileID: 4830305276609162007}
   - component: {fileID: 3135366197414933236}
-  - component: {fileID: 5410604994000216227}
+  - component: {fileID: 8937388647663580969}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Untagged
@@ -632,15 +632,15 @@ MonoBehaviour:
     dataVersion: 2
     usedInTemplate: {fileID: 0}
     name: FSM
-    startState: MoveToTower
+    startState: Skip frame
     states:
     - name: MoveToTower
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 408
-        y: 118
+        x: 55.023438
+        y: 113.75781
         width: 115.6
         height: 16
       isBreakpoint: 0
@@ -695,7 +695,7 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           typeName: Gameplay.EnemiesLogicAssembly.EnemyProvider
-          value: {fileID: 5410604994000216227}
+          value: {fileID: 8937388647663580969}
         fsmVarParams:
         - variableName: 
           objectType: 
@@ -750,6 +750,71 @@ MonoBehaviour:
         - trigger
         paramDataPos: 0000000000000000000000000000000000000000010000000000000001000000
         paramByteDataSize: 0000000000000000000000000000000001000000010000000000000000000000
+    - name: Skip frame
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 260
+        y: 101
+        width: 100
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: MoveToTower
+        linkStyle: 0
+        linkConstraint: 0
+        linkTarget: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - ServicesAssembly.Playmaker.DelayActionFSM
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: ae3b4601
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 0000003f00000000
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 0200000000000000
+        paramName:
+        - waitForSeconds
+        - waitForFrame
+        paramDataPos: 0000000004000000
+        paramByteDataSize: 0400000004000000
     events:
     - name: FINISHED
       isSystemEvent: 1
@@ -806,7 +871,7 @@ MonoBehaviour:
     ResetVariablesOnEnable: 0
     EnableDebugFlow: 0
     EnableBreakpoints: 1
-    editorFlags: 225
+    editorFlags: 501
     activeStateName: 
     mouseEvents: 0
     handleLevelLoaded: 0
@@ -880,7 +945,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5410604994000216227
+--- !u!114 &8937388647663580969
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -893,6 +958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 4830305276609162007}
+  healthBar: {fileID: 2540989733113293543}
 --- !u!1 &6285209290496832308
 GameObject:
   m_ObjectHideFlags: 0

@@ -41,7 +41,17 @@ namespace Gameplay.EnemiesLogicAssembly
 
                     if (buildingComponent.team == Teams.TeamConstants.myTeam)
                     {
-                        moveToBuildingComponent.navMeshAgent.SetDestination(buildingComponent.building.transform.position);
+                        var buildingPosition = buildingComponent.building.transform.position;
+                        var destination = new Vector3(buildingPosition.x, 
+                            moveToBuildingComponent.navMeshAgent.transform.position.y, 
+                            buildingPosition.z);
+
+                        if (destination != moveToBuildingComponent.navMeshAgent.destination)
+                        {
+                            moveToBuildingComponent.navMeshAgent.SetDestination(destination);
+   
+                            _moveToBuildingStash.Remove(moveToBuildingEntity);
+                        }
                         return;
                     }
                 }

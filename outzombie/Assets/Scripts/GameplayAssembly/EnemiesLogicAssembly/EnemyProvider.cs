@@ -1,4 +1,6 @@
-﻿using Scellecs.Morpeh;
+﻿using System;
+using Plugins.procedural_healthbar_shader.HealthBar.Components;
+using Scellecs.Morpeh;
 using Scellecs.Morpeh.Providers;
 using UnityEngine;
 using UnityEngine.AI;
@@ -8,19 +10,28 @@ namespace Gameplay.EnemiesLogicAssembly
     public class EnemyProvider : MonoProvider<EnemyComponent>   
     {
         [SerializeField] private NavMeshAgent agent;
+        [SerializeField] private RectTransform healthBar;
+
+        private void Reset()
+        {
+            agent = GetComponent<NavMeshAgent>();
+            healthBar = GetComponentInChildren<HealthBar>().GetComponent<RectTransform>();
+        }
 
         protected override void Initialize()
         {
             base.Initialize();
             transform.rotation = Quaternion.Euler(0, 180, 0);
+            healthBar.localRotation = Quaternion.Euler(0, 180, healthBar.localRotation.eulerAngles.z);
         }
 
         public void AddMoveToBuildingZone()
         {
-            var healthStash = World.Default.GetStash<MoveToBuildingZone>();
-            if (!healthStash.Has(Entity))
+            var stash = World.Default.GetStash<MoveToBuildingZone>();
+
+            if (!stash.Has(Entity))
             {
-                healthStash.Add(Entity, new MoveToBuildingZone(agent));
+                stash.Add(Entity, new MoveToBuildingZone(agent));
                 Debug.Log("AddMoveToBuildingZone");
             }
          

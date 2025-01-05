@@ -45,19 +45,12 @@ namespace Gameplay.ObjectPoolAssembly
                     _currentPools[poolObjectComponent.key] = pool;
                 }
                 
-                Debug.LogError($"Initialize {poolObjectComponent.key} _currentPools.Count {_currentPools.Count}");
                 pool.Enqueue(obj);
             }
         }
 
         public async UniTask<GameObject> Get(string key) 
         {
-            Debug.LogError($"Get {key} _currentPools.Count {_currentPools.Count}");
-
-            foreach (var kvp in _currentPools)
-            {
-                Debug.LogError($"Get _currentPools  {kvp.Key} {kvp.Value.Count}");
-            }
             if (!_currentPools.TryGetValue(key, out var pool))
                 return default;
             
