@@ -26,7 +26,6 @@ namespace GameplayAssembly.HealthSystem
             foreach (var entity in _filter)
             {
                 ref var healthComponent = ref _healthStash.Get(entity);
-                Debug.Log(healthComponent.health);
             }
         }
     }

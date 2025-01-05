@@ -60,8 +60,7 @@ namespace Plugins.procedural_healthbar_shader.HealthBar.Components
         void SetupUniqueMaterial()
         {
             if (_matInstance != null) return;
-
-            Debug.Log("Setup Material", this.gameObject);
+            
             _matInstance = new Material(Shader.Find("CustomShaders/HealthBar"));
             if (Application.isPlaying)
             {

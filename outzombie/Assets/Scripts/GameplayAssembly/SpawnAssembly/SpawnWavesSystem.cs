@@ -50,6 +50,7 @@ namespace Gameplay.SpawnAssembly
             wave.Suspend(true);
             var enemy = await _enemiesPoolContainer.Get(wave.enemiesId);
             enemy.transform.position = position;
+            enemy.transform.rotation = Quaternion.Euler(0, -180, 0);
             await UniTask.Delay(TimeSpan.FromSeconds(wave.delay));
             wave.Suspend(false);
         }

@@ -11,7 +11,7 @@ namespace Gameplay.EnemiesLogicAssembly
     {
         [SerializeField] private NavMeshAgent agent;
         [SerializeField] private RectTransform healthBar;
-
+        
         private void Reset()
         {
             agent = GetComponent<NavMeshAgent>();
@@ -21,10 +21,13 @@ namespace Gameplay.EnemiesLogicAssembly
         protected override void Initialize()
         {
             base.Initialize();
-            transform.rotation = Quaternion.Euler(0, 180, 0);
+   
+            agent.updateRotation = false;
             healthBar.localRotation = Quaternion.Euler(0, 180, healthBar.localRotation.eulerAngles.z);
+            ref var data = ref GetData();
+            data.transform = this.transform;
         }
-
+        
         public void AddMoveToBuildingZone()
         {
             var stash = World.Default.GetStash<MoveToBuildingZone>();
@@ -32,7 +35,6 @@ namespace Gameplay.EnemiesLogicAssembly
             if (!stash.Has(Entity))
             {
                 stash.Add(Entity, new MoveToBuildingZone(agent));
-                Debug.Log("AddMoveToBuildingZone");
             }
          
         }
