@@ -1,4 +1,5 @@
 ﻿using System;
+using Gameplay.AbilitiesAssembly;
 using Gameplay.EnemiesLogicAssembly;
 using Gameplay.SpawnAssembly;
 using GameplayAssembly.HealthSystem;
@@ -17,6 +18,7 @@ namespace Gameplay
             systemGroup.AddSystem(new HealthSystem());
             systemGroup.AddSystem(new SpawnWavesSystem());
             systemGroup.AddSystem(new EnemiesLogicSystem());
+            systemGroup.AddSystem(new MeleeAttackSystem());
             
             world.AddSystemsGroup(order: 0, systemGroup);
         }

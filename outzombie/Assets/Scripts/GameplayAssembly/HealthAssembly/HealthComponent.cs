@@ -1,5 +1,6 @@
 using Scellecs.Morpeh;
 using Unity.IL2CPP.CompilerServices;
+using UnityEngine;
 
 [System.Serializable]
 [Il2CppSetOption(Option.NullChecks, false)]
@@ -9,4 +10,9 @@ public struct HealthComponent : IComponent
 {
     public float health;
     public float maxHealth;
+
+    public void Hit(float damage)
+    {
+        health -= damage;
+    }
 }

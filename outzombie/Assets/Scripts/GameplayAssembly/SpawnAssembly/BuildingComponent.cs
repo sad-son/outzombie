@@ -13,9 +13,6 @@ namespace Gameplay.SpawnAssembly
     [Il2CppSetOption(Option.DivideByZeroChecks, false)]
     public struct BuildingComponent : IComponent  
     {
-        [ReadOnly] public GameObject building;
-        
-        public byte team;
         public List<SpawnWaveData> waves;
     }
     

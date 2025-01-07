@@ -11,6 +11,7 @@ namespace Gameplay.EnemiesLogicAssembly
     {
         [SerializeField] private NavMeshAgent agent;
         [SerializeField] private RectTransform healthBar;
+        [SerializeField] private PlayMakerFSM playMakerFsm;
         
         private void Reset()
         {
@@ -24,10 +25,8 @@ namespace Gameplay.EnemiesLogicAssembly
    
             agent.updateRotation = false;
             healthBar.localRotation = Quaternion.Euler(0, 180, healthBar.localRotation.eulerAngles.z);
-            ref var data = ref GetData();
-            data.transform = this.transform;
         }
-        
+
         public void AddMoveToBuildingZone()
         {
             var stash = World.Default.GetStash<MoveToBuildingZone>();

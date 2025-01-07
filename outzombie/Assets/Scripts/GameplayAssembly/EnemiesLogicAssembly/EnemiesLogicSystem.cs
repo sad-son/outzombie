@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using Gameplay.SpawnAssembly;
+using Gameplay.UnityComponents;
 using Scellecs.Morpeh;
 using UnityEngine;
 
@@ -13,7 +14,8 @@ namespace Gameplay.EnemiesLogicAssembly
         private Filter _enemiesFilter;
         private Filter _moveToBuildingFilter;
         
-        private Stash<EnemyComponent> _enemiesStash;
+        private Stash<TeamComponent> _teamStash;
+        private Stash<TransformComponent> _transformStash;
         private Stash<BuildingComponent> _buildingsStash;
         private Stash<MoveToBuildingZone> _moveToBuildingStash;
         
@@ -26,11 +28,12 @@ namespace Gameplay.EnemiesLogicAssembly
         {
             _buildingsFilter = World.Filter.With<BuildingComponent>().Build();
             _moveToBuildingFilter = World.Filter.With<MoveToBuildingZone>().Build();
-            _enemiesFilter = World.Filter.With<EnemyComponent>().Without<MoveToBuildingZone>().Build();
+            _enemiesFilter = World.Filter.With<TeamComponent>().Without<MoveToBuildingZone>().Build();
             
             _buildingsStash = World.GetStash<BuildingComponent>();
             _moveToBuildingStash = World.GetStash<MoveToBuildingZone>();
-            _enemiesStash = World.GetStash<EnemyComponent>();
+            _teamStash = World.GetStash<TeamComponent>();
+            _transformStash = World.GetStash<TransformComponent>();
         }
 
        
@@ -38,30 +41,31 @@ namespace Gameplay.EnemiesLogicAssembly
         {
             foreach (var moveToBuildingEntity in _moveToBuildingFilter)
             {
-                ref var enemyComponent = ref _enemiesStash.Get(moveToBuildingEntity);
+                ref var enemyTeamComponent = ref _teamStash.Get(moveToBuildingEntity);
+              
                 ref var moveToBuildingComponent = ref _moveToBuildingStash.Get(moveToBuildingEntity);
                 
                 foreach (var building in _buildingsFilter)
                 {
-                    ref var buildingComponent = ref _buildingsStash.Get(building);
-
-                    if (buildingComponent.team == Teams.TeamConstants.myTeam)
+                    ref var buildingTeamComponent = ref _teamStash.Get(building);
+                    
+                    if (!enemyTeamComponent.InTeam(buildingTeamComponent))
                     {
-                        var buildingPosition = buildingComponent.building.transform.position;
+                        ref var transformComponent = ref _transformStash.Get(building);
+                        var buildingPosition = transformComponent.transform.position;
                         var destination = new Vector3(buildingPosition.x, 
                             moveToBuildingComponent.navMeshAgent.transform.position.y, 
                             buildingPosition.z);
                         
                         if (!moveToBuildingComponent.hasTarget)
                         {
-                            Debug.Log(destination);
                             moveToBuildingComponent.hasTarget = true;
                             moveToBuildingComponent.navMeshAgent.SetDestination(destination);
                             RotateToTarget(1f, moveToBuildingComponent.navMeshAgent.transform, destination);
                             _moveToBuildingStash.Remove(moveToBuildingEntity);
                         }
 
-                        RotateToTarget(1f, enemyComponent.transform, destination);
+                        RotateToTarget(1f, transformComponent.transform, destination);
                         return;
                     }
                 }
