@@ -1,4 +1,5 @@
-﻿using Scellecs.Morpeh;
+﻿using Gameplay.EnemiesLogicAssembly;
+using Scellecs.Morpeh;
 using UnityEngine;
 
 namespace GameplayAssembly.HealthSystem
@@ -26,6 +27,12 @@ namespace GameplayAssembly.HealthSystem
             foreach (var entity in _filter)
             {
                 ref var healthComponent = ref _healthStash.Get(entity);
+           
+                if (healthComponent.health <= 0)
+                {
+                   // Object.Destroy(healthComponent.gameObject);
+                   healthComponent.health = healthComponent.maxHealth;
+                }
             }
         }
     }

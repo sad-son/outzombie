@@ -13,8 +13,10 @@ namespace Gameplay.AbilitiesAssembly
         public float distance;
         public float damage;
         public float attackSpeed;
+        public float delayBeforeHit;
 
         public bool canAttack => Time.time >= _lastAttackTime + attackSpeed;
+        public bool canHit => Time.time >= _lastAttackTime + attackSpeed + delayBeforeHit;
         private float _lastAttackTime;
         
         public void Attack()

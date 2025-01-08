@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Gameplay.EnemiesLogicAssembly
 {
-    public class EnemiesLogicSystem : ISystem
+    public class MovingToBuildingSystem : ISystem
     {
         public World World { get; set; }
         
@@ -17,7 +17,7 @@ namespace Gameplay.EnemiesLogicAssembly
         private Stash<TeamComponent> _teamStash;
         private Stash<TransformComponent> _transformStash;
         private Stash<BuildingComponent> _buildingsStash;
-        private Stash<MoveToBuildingZone> _moveToBuildingStash;
+        private Stash<MoveToBuildingComponent> _moveToBuildingStash;
         
         public void Dispose()
         {
@@ -27,11 +27,11 @@ namespace Gameplay.EnemiesLogicAssembly
         public void OnAwake()
         {
             _buildingsFilter = World.Filter.With<BuildingComponent>().Build();
-            _moveToBuildingFilter = World.Filter.With<MoveToBuildingZone>().Build();
-            _enemiesFilter = World.Filter.With<TeamComponent>().Without<MoveToBuildingZone>().Build();
+            _moveToBuildingFilter = World.Filter.With<MoveToBuildingComponent>().Build();
+            _enemiesFilter = World.Filter.With<TeamComponent>().Without<MoveToBuildingComponent>().Build();
             
             _buildingsStash = World.GetStash<BuildingComponent>();
-            _moveToBuildingStash = World.GetStash<MoveToBuildingZone>();
+            _moveToBuildingStash = World.GetStash<MoveToBuildingComponent>().AsDisposable();
             _teamStash = World.GetStash<TeamComponent>();
             _transformStash = World.GetStash<TransformComponent>();
         }
@@ -56,17 +56,23 @@ namespace Gameplay.EnemiesLogicAssembly
                         var destination = new Vector3(buildingPosition.x, 
                             moveToBuildingComponent.navMeshAgent.transform.position.y, 
                             buildingPosition.z);
+        
+                        var agent = moveToBuildingComponent.navMeshAgent;
                         
                         if (!moveToBuildingComponent.hasTarget)
                         {
                             moveToBuildingComponent.hasTarget = true;
-                            moveToBuildingComponent.navMeshAgent.SetDestination(destination);
-                            RotateToTarget(1f, moveToBuildingComponent.navMeshAgent.transform, destination);
-                            _moveToBuildingStash.Remove(moveToBuildingEntity);
+                            agent.SetDestination(destination);
                         }
 
+                        if (!agent.pathPending 
+                            && agent.remainingDistance <= agent.stoppingDistance
+                            && agent.velocity.sqrMagnitude == 0f)
+                        {
+                            _moveToBuildingStash.Remove(moveToBuildingEntity);
+                        }
+                        
                         RotateToTarget(1f, transformComponent.transform, destination);
-                        return;
                     }
                 }
             }

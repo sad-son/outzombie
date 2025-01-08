@@ -7,11 +7,10 @@ using UnityEngine.AI;
 
 namespace Gameplay.EnemiesLogicAssembly
 {
-    public class EnemyProvider : MonoProvider<EnemyComponent>   
+    public class NavigationUnitProvider : MonoProvider<NavigationUnitComponent>   
     {
         [SerializeField] private NavMeshAgent agent;
         [SerializeField] private RectTransform healthBar;
-        [SerializeField] private PlayMakerFSM playMakerFsm;
         
         private void Reset()
         {
@@ -23,19 +22,11 @@ namespace Gameplay.EnemiesLogicAssembly
         {
             base.Initialize();
    
-            agent.updateRotation = false;
+            ref var serializedData = ref GetData();
+            serializedData.agent = agent;
+            
+          //  agent.updateRotation = false;
             healthBar.localRotation = Quaternion.Euler(0, 180, healthBar.localRotation.eulerAngles.z);
-        }
-
-        public void AddMoveToBuildingZone()
-        {
-            var stash = World.Default.GetStash<MoveToBuildingZone>();
-
-            if (!stash.Has(Entity))
-            {
-                stash.Add(Entity, new MoveToBuildingZone(agent));
-            }
-         
         }
     }
 }
