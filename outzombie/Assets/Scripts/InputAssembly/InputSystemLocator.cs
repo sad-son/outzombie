@@ -2,7 +2,7 @@
 
 namespace Systems
 {
-    public class InputSystemLocator : SystemLocatorBase<IInputSystemInstance>, IServiceLocator
+    public class InputSystemLocator : SystemLocatorBase<IInputSystemInstance>
     {
         protected override void RegisterTypes()
         {

@@ -35,6 +35,7 @@ namespace AssetSystem
             var loadPair = await LoadAssetAsync(key);
             
             var component = Object.Instantiate(loadPair.asset, parent, instantiateInWorldSpace);
+     
             return component;
         }
 

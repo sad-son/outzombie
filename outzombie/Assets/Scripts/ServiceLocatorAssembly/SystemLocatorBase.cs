@@ -3,15 +3,9 @@ using System.Collections.Generic;
 
 namespace ServiceLocatorSystem
 {
-    public abstract class SystemLocatorBase<TQueryType> : IDisposable
+    public abstract class SystemLocatorBase<TQueryType> : IDisposable, IServiceLocator
     {
-        private readonly Dictionary<Type, IDisposable> _services;
-
-        protected SystemLocatorBase()
-        {
-            _services = new Dictionary<Type, IDisposable>();
-            RegisterTypesInternal();
-        }
+        private readonly Dictionary<Type, IDisposable> _services = new();
 
         public virtual void Dispose()
         {
@@ -36,6 +30,11 @@ namespace ServiceLocatorSystem
         protected void Register<T>(T instance) where T : TQueryType, IDisposable
         {
             _services[typeof(T)] = instance;
+        }
+
+        public void Register()
+        {
+            RegisterTypesInternal();
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace AssetSystem
 {
-    public class AssetSystemLocator : SystemLocatorBase<IAssetSystemInstance>, IServiceLocator
+    public class AssetSystemLocator : SystemLocatorBase<IAssetSystemInstance>
     {
 
         protected override void RegisterTypes()

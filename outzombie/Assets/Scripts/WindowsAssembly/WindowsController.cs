@@ -47,5 +47,10 @@ namespace WindowsSystem
             _currentWindows[type] = window;
             return window;
         }
+
+        public void Register()
+        {
+            
+        }
     }
 }

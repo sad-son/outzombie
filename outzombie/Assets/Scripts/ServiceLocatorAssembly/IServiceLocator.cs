@@ -2,6 +2,6 @@
 {
     public interface IServiceLocator
     {
-        
+        void Register();
     }
 }

@@ -15,6 +15,7 @@ namespace ServiceLocatorSystem
         public static void Register<T>(T resolver) where T : IServiceLocator
         {
             _services[typeof(T)] = resolver;
+            resolver.Register();
         }
         
         public static void Unregister<T>() where T : IServiceLocator

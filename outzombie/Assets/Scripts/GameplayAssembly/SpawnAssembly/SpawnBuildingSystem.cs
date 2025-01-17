@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Gameplay.SpawnAssembly
 {
-    public class SpawnWavesSystem  :  ISystem
+    public class SpawnBuildingSystem  :  ISystem
     {
         public World World { get; set; }
         

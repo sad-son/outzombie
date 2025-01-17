@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Guards
+  m_EditorClassIdentifier: 
+  m_GroupName: Guards
+  m_GUID: 7805e948b212c984bbacc9a77ed7f1f0
+  m_SerializeEntries:
+  - m_GUID: e39ab840f03c75942aa11fa04ce78e3c
+    m_Address: Guard
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 1a2be2b8369afdb49aad2de53e64df54, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 2bbc85bb44f64c34c8f9e359b6aaeb91, type: 2}
+    - {fileID: 11400000, guid: fe48a1cf2da2e7c4cb4aa69251cefea9, type: 2}

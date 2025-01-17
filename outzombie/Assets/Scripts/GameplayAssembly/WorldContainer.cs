@@ -16,7 +16,8 @@ namespace Gameplay
 
             var systemGroup = world.CreateSystemsGroup();
             systemGroup.AddSystem(new HealthSystem());
-            systemGroup.AddSystem(new SpawnWavesSystem());
+            systemGroup.AddSystem(new SpawnBuildingSystem());
+            systemGroup.AddSystem(new SpawnCardSystem());
             systemGroup.AddSystem(new MovingToBuildingSystem());
             systemGroup.AddSystem(new MeleeAttackSystem());
             

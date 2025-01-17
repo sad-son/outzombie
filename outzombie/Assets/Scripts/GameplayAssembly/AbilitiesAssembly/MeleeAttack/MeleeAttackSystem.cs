@@ -19,7 +19,7 @@ namespace Gameplay.AbilitiesAssembly
         
         public void OnAwake()
         {
-            _enemiesFilter = World.Filter.With<TeamComponent>().Build();
+            _enemiesFilter = World.Filter.With<TransformComponent>().Build();
             _meleeAttackTriggers = World.Filter.With<MeleeAttackTriggerComponent>().Build();
             
             _teamsStash = World.GetStash<TeamComponent>();
