@@ -1016,7 +1016,7 @@ MonoBehaviour:
   serializedData:
     distance: 3
     damage: 10
-    attackSpeed: 0.2
+    attackSpeed: 0.6
     delayBeforeHit: 0.1
 --- !u!114 &8687497714823776469
 MonoBehaviour:

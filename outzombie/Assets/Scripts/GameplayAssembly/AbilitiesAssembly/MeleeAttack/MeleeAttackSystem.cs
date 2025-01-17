@@ -53,18 +53,19 @@ namespace Gameplay.AbilitiesAssembly
                     var enemyPosition = enemyTransform.transform.position;
                     var meleeComponentPosition = meleeTransformComponent.transform.position;
                     ref var meleeAttackComponent = ref _meleeAttackStash.Get(meleeEntity);
-  
+
                     if (Vector3.Distance(enemyPosition, meleeComponentPosition) <= meleeAttackComponent.distance)
                     {
-                        if (meleeAttackComponent.canAttack)
-                        {
-                            meleeAttackComponent.Attack();
-                        }
-                        
                         if (meleeAttackComponent.canHit)
                         {
                             ref var healthComponent = ref _healthStash.Get(enemyEntity);
                             healthComponent.Hit(meleeAttackComponent.damage);
+                            meleeAttackComponent.EndAttack();
+                        }
+                        
+                        if (meleeAttackComponent.canAttack)
+                        {
+                            meleeAttackComponent.StartAttack();
                         }
                         
                         hasTarget = true;
