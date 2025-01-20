@@ -5,4 +5,4 @@ namespace Gameplay.SpawnAssembly
     public class SpawnBuildingProvider : MonoProvider<BuildingComponent>
     {
     }
-}
+} 

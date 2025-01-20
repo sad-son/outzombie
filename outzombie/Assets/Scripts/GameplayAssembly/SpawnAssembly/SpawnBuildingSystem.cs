@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using Gameplay.EnemiesLogicAssembly;
 using Gameplay.ObjectPoolAssembly;
@@ -19,9 +20,13 @@ namespace Gameplay.SpawnAssembly
         private Stash<TransformComponent> _transformStash;
         private EnemiesPoolContainer _enemiesPoolContainer;
         
+        private bool _spawning;
+        private CancellationTokenSource _cancellationTokenSource;
+        
         public void Dispose()
         {
-            
+            _cancellationTokenSource?.Cancel();
+            _cancellationTokenSource?.Dispose();
         }
 
         public void OnAwake()
@@ -32,12 +37,18 @@ namespace Gameplay.SpawnAssembly
             _transformStash = World.GetStash<TransformComponent>();
             _enemiesPoolContainer = ServiceLocatorController.Resolve<GameplaySystemLocator>()
                 .Resolve<EnemiesPoolContainer>();
+            
+            _cancellationTokenSource =  new CancellationTokenSource();
         }
         
         public void OnUpdate(float deltaTime)
         {
+            if (_spawning)
+                return;
+            
             if (_enemiesPoolContainer.IsEmpty())
                 return;
+            
             foreach (var entity in _filter)
             {
                 ref var spawnBuildingComponent = ref _stash.Get(entity);
@@ -45,12 +56,21 @@ namespace Gameplay.SpawnAssembly
                 ref var transformComponent = ref _transformStash.Get(entity);
                 var spawnPosition = transformComponent.transform.position + new Vector3(0, 0, -2);
                 
-                foreach (var wave in spawnBuildingComponent.waves)
-                {
-                    if (!wave.suspended)
-                        Spawn(wave, spawnPosition, teamComponent.team).Forget();
-                }
+                SpawnWaves(spawnBuildingComponent, spawnPosition, teamComponent).Forget();
             }
+        }
+
+        private async UniTaskVoid SpawnWaves(BuildingComponent spawnBuildingComponent, Vector3 spawnPosition, TeamComponent teamComponent)
+        {
+            _spawning = true;
+            foreach (var wave in spawnBuildingComponent.waves)
+            {
+                if (!wave.suspended)
+                    Spawn(wave, spawnPosition, teamComponent.team).Forget();
+                
+                await UniTask.Delay(TimeSpan.FromSeconds(1f), cancellationToken: _cancellationTokenSource.Token);
+            }
+            _spawning = false;
         }
 
         private async UniTaskVoid Spawn(SpawnWaveData wave, Vector3 position, byte team)
@@ -63,7 +83,7 @@ namespace Gameplay.SpawnAssembly
             {
                 teamProvider.SetTeam(team);
             }
-            await UniTask.Delay(TimeSpan.FromSeconds(wave.delay));
+            await UniTask.Delay(TimeSpan.FromSeconds(wave.delay), cancellationToken: _cancellationTokenSource.Token);
             wave.Suspend(false);
         }
     }

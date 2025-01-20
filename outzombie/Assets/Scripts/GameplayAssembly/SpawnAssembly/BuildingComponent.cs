@@ -7,13 +7,10 @@ using UnityEngine;
 
 namespace Gameplay.SpawnAssembly
 {
-    [System.Serializable]
-    [Il2CppSetOption(Option.NullChecks, false)]
-    [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
-    [Il2CppSetOption(Option.DivideByZeroChecks, false)]
+    [Serializable]
     public struct BuildingComponent : IComponent  
     {
-        public List<SpawnWaveData> waves;
+       public SpawnWaveData[] waves;
     }
     
     [Serializable]

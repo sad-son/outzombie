@@ -14,6 +14,6 @@ public struct HealthComponent : IComponent
     
     public void Hit(float damage)
     {
-        Debug.LogError($"SAD {damage} {health}");
+        health = Mathf.Clamp(health - damage, 0, maxHealth);
     }
 }

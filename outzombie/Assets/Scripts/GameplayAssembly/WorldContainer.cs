@@ -1,6 +1,7 @@
 ﻿using System;
 using Gameplay.AbilitiesAssembly;
 using Gameplay.EnemiesLogicAssembly;
+using Gameplay.EnemiesLogicAssembly.BreakThroughToBuilding;
 using Gameplay.SpawnAssembly;
 using GameplayAssembly.HealthSystem;
 using Scellecs.Morpeh;
@@ -19,6 +20,7 @@ namespace Gameplay
             systemGroup.AddSystem(new SpawnBuildingSystem());
             systemGroup.AddSystem(new SpawnCardSystem());
             systemGroup.AddSystem(new MovingToBuildingSystem());
+            systemGroup.AddSystem(new MoveToTargetSystem());
             systemGroup.AddSystem(new MeleeAttackSystem());
             
             world.AddSystemsGroup(order: 0, systemGroup);

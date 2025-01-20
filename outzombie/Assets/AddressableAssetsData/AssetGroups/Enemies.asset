@@ -15,7 +15,12 @@ MonoBehaviour:
   m_GroupName: Enemies
   m_GUID: fbb8e616eeadb2a42b8fa6b04d2a7634
   m_SerializeEntries:
-  - m_GUID: 60e4b92511bb91541a60d6d6751531fd
+  - m_GUID: 36e086e6d43253c42bb8bf9b3934cb57
+    m_Address: Golem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5844e058a2f6a8b468e3cedf38a09221
     m_Address: Skeleton
     m_ReadOnly: 0
     m_SerializedLabels: []
