@@ -21,7 +21,6 @@ namespace GameplayAssembly.HealthSystem
             base.Initialize();
             ref var serializedData = ref GetData();
             serializedData.health = serializedData.maxHealth;
-            serializedData.gameObject = this.gameObject;
         }
     }
 }

@@ -9,12 +9,12 @@ namespace Gameplay.EnemiesLogicAssembly.BreakThroughToBuilding
     {
         public NavMeshAgent navMeshAgent;
         public float findTargetDelay;
-        public Action disposed;
+        public Action completed;
 
-        public MoveToTargetComponent(NavMeshAgent navMeshAgent, Action disposed) : this()
+        public MoveToTargetComponent(NavMeshAgent navMeshAgent, Action completed) : this()
         {
             this.navMeshAgent = navMeshAgent;
-            this.disposed = disposed;
+            this.completed = completed;
             findTargetDelay = 1;
         }
 
@@ -25,15 +25,31 @@ namespace Gameplay.EnemiesLogicAssembly.BreakThroughToBuilding
 
         public void SetDestination(Vector3 destination)
         {
-            Debug.LogError($"SAD {navMeshAgent} to target destination {destination}");
             navMeshAgent.SetDestination(destination);
             _lastTargetSelecting = Time.time;
+            
+            if (!navMeshAgent.pathPending 
+                && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
+            {
+                Complete();
+            }
+            
+            /*if (!navMeshAgent.pathPending 
+                && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance
+                && navMeshAgent.velocity.sqrMagnitude == 0f)
+            {
+                Complete();
+            }*/
         }
 
+        public void Complete()
+        {
+            completed?.Invoke();
+        }
         public void Dispose()
         {
-            disposed?.Invoke();
-            disposed = null;
+            completed?.Invoke();
+            completed = null;
             hasTarget = false;
         }
     }

@@ -2187,7 +2187,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -2292,7 +2292,6 @@ MonoBehaviour:
   serializedData:
     health: 55
     maxHealth: 55
-    gameObject: {fileID: 0}
 --- !u!114 &6231487792996138766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2674,14 +2673,6 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7549146502472829225, guid: 64731391435630f4996775ff398bd95f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 7549146502472829225, guid: 64731391435630f4996775ff398bd95f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7549146502472829225, guid: 64731391435630f4996775ff398bd95f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -2733,10 +2724,6 @@ PrefabInstance:
       propertyPath: _healthProvider
       value: 
       objectReference: {fileID: 9026437078570248481}
-    - target: {fileID: 7549146502472829230, guid: 64731391435630f4996775ff398bd95f, type: 3}
-      propertyPath: _healthNormalized
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

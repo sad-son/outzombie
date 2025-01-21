@@ -10,7 +10,6 @@ public struct HealthComponent : IComponent
 {
     public float health;
     public float maxHealth;
-    public GameObject gameObject;
     
     public void Hit(float damage)
     {

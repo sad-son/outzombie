@@ -71,24 +71,10 @@ namespace Gameplay.EnemiesLogicAssembly
                         {
                             _moveToBuildingStash.Remove(moveToBuildingEntity);
                         }
-                        
-                        RotateToTarget(1f, transformComponent.transform, destination);
                     }
                 }
             }
         }
-        
-        private void RotateToTarget(float time, Transform transform, Vector3 destination)
-        {
-            var direction = destination - transform.position; 
-            direction.y = 0;
-            var targetRotation = Quaternion.LookRotation(direction);
-            var rotation = Quaternion.Slerp(transform.rotation, targetRotation, time);
-            var eulerAngles = rotation.eulerAngles;
-            eulerAngles.x = -15f;
 
-            rotation.eulerAngles = eulerAngles;
-            transform.rotation = rotation;
-        }
     }
 }

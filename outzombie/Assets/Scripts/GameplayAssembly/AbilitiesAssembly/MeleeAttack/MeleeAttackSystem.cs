@@ -16,6 +16,7 @@ namespace Gameplay.AbilitiesAssembly
         private Stash<MeleeAttackComponent> _meleeAttackStash;
         private Stash<HealthComponent> _healthStash;
         private Stash<TransformComponent> _transformStash;
+        private Stash<NavigationUnitComponent> _navigationUnitComponentStash;
         
         public void OnAwake()
         {
@@ -27,6 +28,7 @@ namespace Gameplay.AbilitiesAssembly
             _healthStash = World.GetStash<HealthComponent>();
             _transformStash = World.GetStash<TransformComponent>();
             _triggerStash = World.GetStash<MeleeAttackTriggerComponent>();
+            _navigationUnitComponentStash = World.GetStash<NavigationUnitComponent>();
         }
         
         public void Dispose()
@@ -40,6 +42,8 @@ namespace Gameplay.AbilitiesAssembly
             {
                 ref var teamMeleeComponent = ref _teamsStash.Get(meleeEntity);
                 ref var meleeTransformComponent = ref _transformStash.Get(meleeEntity);
+                ref var meleeAttackComponent = ref _meleeAttackStash.Get(meleeEntity);
+                ref var navigationUnitComponent = ref _navigationUnitComponentStash.Get(meleeEntity);
                 
                 bool hasTarget = false;
                 foreach (var enemyEntity in _enemiesFilter)
@@ -52,13 +56,15 @@ namespace Gameplay.AbilitiesAssembly
                     
                     var enemyPosition = enemyTransform.transform.position;
                     var meleeComponentPosition = meleeTransformComponent.transform.position;
-                    ref var meleeAttackComponent = ref _meleeAttackStash.Get(meleeEntity);
+              
 
                     if (Vector3.Distance(enemyPosition, meleeComponentPosition) <= meleeAttackComponent.distance)
                     {
                         if (meleeAttackComponent.canHit)
                         {
+                            navigationUnitComponent.RotateToTarget(1f, enemyPosition);
                             ref var healthComponent = ref _healthStash.Get(enemyEntity);
+                            Debug.LogError($"SAD {enemyTransform.transform} set damage {meleeAttackComponent.damage}");
                             healthComponent.Hit(meleeAttackComponent.damage);
                             meleeAttackComponent.EndAttack();
                         }

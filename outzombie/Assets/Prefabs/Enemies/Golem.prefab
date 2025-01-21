@@ -1943,6 +1943,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4015678937708948861, guid: 60e4b92511bb91541a60d6d6751531fd, type: 3}
+      propertyPath: fsm.editorFlags
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830305276609162007, guid: 60e4b92511bb91541a60d6d6751531fd, type: 3}
+      propertyPath: m_Speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830305276609162007, guid: 60e4b92511bb91541a60d6d6751531fd, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830305276609162007, guid: 60e4b92511bb91541a60d6d6751531fd, type: 3}
+      propertyPath: m_ObstacleAvoidanceType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830305276609162007, guid: 60e4b92511bb91541a60d6d6751531fd, type: 3}
+      propertyPath: m_AutoTraverseOffMeshLink
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6285209290496798482, guid: 60e4b92511bb91541a60d6d6751531fd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1986,6 +2006,10 @@ PrefabInstance:
     - target: {fileID: 6285209290496832306, guid: 60e4b92511bb91541a60d6d6751531fd, type: 3}
       propertyPath: m_Name
       value: Golem
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401894423304115583, guid: 60e4b92511bb91541a60d6d6751531fd, type: 3}
+      propertyPath: serializedData.attackSpeed
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3135366197414933236, guid: 60e4b92511bb91541a60d6d6751531fd, type: 3}
