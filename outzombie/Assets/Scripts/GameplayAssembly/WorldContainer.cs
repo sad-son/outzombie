@@ -11,18 +11,18 @@ namespace Gameplay
 {
     public class WorldContainer : MonoBehaviour
     {
-        private void Start()
+        public void Setup()
         {
             var world = World.Default;
 
             var systemGroup = world.CreateSystemsGroup();
-            systemGroup.AddSystem(new HealthSystem());
+
             systemGroup.AddSystem(new SpawnBuildingSystem());
             systemGroup.AddSystem(new SpawnCardSystem());
             systemGroup.AddSystem(new MovingToBuildingSystem());
             systemGroup.AddSystem(new MoveToTargetSystem());
             systemGroup.AddSystem(new MeleeAttackSystem());
-            
+            systemGroup.AddSystem(new HealthSystem());
             world.AddSystemsGroup(order: 0, systemGroup);
         }
     }

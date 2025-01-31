@@ -1,4 +1,5 @@
 ﻿using Gameplay.EnemiesLogicAssembly;
+using Gameplay.ObjectPoolAssembly;
 using Gameplay.UnityComponents;
 using Scellecs.Morpeh;
 using UnityEngine;
@@ -20,8 +21,10 @@ namespace Gameplay.AbilitiesAssembly
         
         public void OnAwake()
         {
-            _enemiesFilter = World.Filter.With<TransformComponent>().Build();
-            _meleeAttackTriggers = World.Filter.With<MeleeAttackTriggerComponent>().Build();
+            _enemiesFilter = World.Filter.With<TransformComponent>()
+                .Without<DisabledComponent>().Build();
+            _meleeAttackTriggers = World.Filter.With<MeleeAttackTriggerComponent>()
+                .Without<DisabledComponent>().Build();
             
             _teamsStash = World.GetStash<TeamComponent>();
             _meleeAttackStash = World.GetStash<MeleeAttackComponent>();
@@ -64,7 +67,7 @@ namespace Gameplay.AbilitiesAssembly
                         {
                             navigationUnitComponent.RotateToTarget(1f, enemyPosition);
                             ref var healthComponent = ref _healthStash.Get(enemyEntity);
-                            Debug.LogError($"SAD {enemyTransform.transform} set damage {meleeAttackComponent.damage}");
+  
                             healthComponent.Hit(meleeAttackComponent.damage);
                             meleeAttackComponent.EndAttack();
                         }

@@ -31,7 +31,9 @@ namespace Gameplay.SpawnAssembly
 
         public void OnAwake()
         {
-            _filter = World.Filter.With<BuildingComponent>().Build();
+            _filter = World.Filter.With<BuildingComponent>()
+                .Without<DisabledComponent>()
+                .Build();
             _stash = World.GetStash<BuildingComponent>();
             _teamStash = World.GetStash<TeamComponent>();
             _transformStash = World.GetStash<TransformComponent>();

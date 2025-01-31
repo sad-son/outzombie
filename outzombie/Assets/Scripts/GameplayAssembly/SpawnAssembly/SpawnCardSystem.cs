@@ -24,7 +24,8 @@ namespace Gameplay.SpawnAssembly
 
         public void OnAwake()
         {
-            _filter = World.Filter.With<CardUiComponent>().Build();
+            _filter = World.Filter.With<CardUiComponent>()
+                .Without<DisabledComponent>().Build();
             _stash = World.GetStash<CardUiComponent>();
             _teamStash = World.GetStash<TeamComponent>();
             unitsPoolContainer = ServiceLocatorController.Resolve<GameplaySystemLocator>()

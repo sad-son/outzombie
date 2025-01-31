@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using Gameplay.ObjectPoolAssembly;
 using Gameplay.SpawnAssembly;
 using Gameplay.UnityComponents;
 using Scellecs.Morpeh;
@@ -26,8 +27,10 @@ namespace Gameplay.EnemiesLogicAssembly
 
         public void OnAwake()
         {
-            _buildingsFilter = World.Filter.With<BuildingComponent>().Build();
-            _moveToBuildingFilter = World.Filter.With<MoveToBuildingComponent>().Build();
+            _buildingsFilter = World.Filter.With<BuildingComponent>()
+                .Without<DisabledComponent>().Build();
+            _moveToBuildingFilter = World.Filter.With<MoveToBuildingComponent>()
+                .Without<DisabledComponent>().Build();
             _enemiesFilter = World.Filter.With<TeamComponent>().Without<MoveToBuildingComponent>().Build();
             
             _buildingsStash = World.GetStash<BuildingComponent>();

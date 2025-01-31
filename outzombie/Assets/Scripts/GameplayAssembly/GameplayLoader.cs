@@ -1,4 +1,5 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using Gameplay.ObjectPoolAssembly;
 using ServiceLocatorSystem;
 using UnityEngine;
@@ -9,8 +10,9 @@ namespace Gameplay
     {
         [SerializeField] private Transform _enemyRoot;
         [SerializeField] private Transform _myRoot;
-        [SerializeField] private PoolObjectComponent[] _enemyPoolObjects;
-        [SerializeField] private PoolObjectComponent[] _myUnitsObjects;
+        [SerializeField] private PoolObjectData[] _enemyPoolObjects;
+        [SerializeField] private PoolObjectData[] _myUnitsObjects;
+        [SerializeField] private WorldContainer _worldContainer;
         
         private void Awake()
         {
@@ -29,6 +31,8 @@ namespace Gameplay
                     .Resolve<MyUnitsPoolContainer>()
                     .Initialize(poolObjectComponent).Forget();
             }
+
+            _worldContainer.Setup();
         }
 
         private void OnDestroy()

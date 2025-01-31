@@ -11,6 +11,7 @@ namespace Gameplay.SpawnAssembly
     public struct BuildingComponent : IComponent  
     {
        public SpawnWaveData[] waves;
+       public bool isMain;
     }
     
     [Serializable]

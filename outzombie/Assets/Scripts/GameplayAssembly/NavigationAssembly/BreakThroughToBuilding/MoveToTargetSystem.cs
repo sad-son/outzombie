@@ -1,6 +1,7 @@
 ﻿using Scellecs.Morpeh;
 using Cysharp.Threading.Tasks;
 using Gameplay.AbilitiesAssembly;
+using Gameplay.ObjectPoolAssembly;
 using Gameplay.SpawnAssembly;
 using Gameplay.UnityComponents;
 using Scellecs.Morpeh;
@@ -23,8 +24,10 @@ namespace Gameplay.EnemiesLogicAssembly.BreakThroughToBuilding
         
         public void OnAwake()
         {
-            _enemiesFilter = World.Filter.With<TransformComponent>().Build();
-            _moveToTargetFilter = World.Filter.With<MoveToTargetComponent>().Build();
+            _enemiesFilter = World.Filter.With<TransformComponent>()
+                .Without<DisabledComponent>().Build();
+            _moveToTargetFilter = World.Filter.With<MoveToTargetComponent>()
+                .Without<DisabledComponent>().Build();
             _teamsStash = World.GetStash<TeamComponent>();
             _healthStash = World.GetStash<HealthComponent>();
             _transformStash = World.GetStash<TransformComponent>();
@@ -66,7 +69,6 @@ namespace Gameplay.EnemiesLogicAssembly.BreakThroughToBuilding
                    
                     if (distance <= minDistance)
                     {
-                        Debug.LogError($"SAD TARGET {enemyTransform.transform}");
                         targetPosition = enemyPosition;
                         minDistance = distance;
                     }
