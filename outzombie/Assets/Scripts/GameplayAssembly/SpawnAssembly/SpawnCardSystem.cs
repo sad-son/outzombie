@@ -1,6 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using Gameplay.CardAssembly;
 using Gameplay.EnemiesLogicAssembly;
+using Gameplay.Extensions;
 using Gameplay.ObjectPoolAssembly;
 using Scellecs.Morpeh;
 using ServiceLocatorSystem;
@@ -8,21 +9,14 @@ using UnityEngine;
 
 namespace Gameplay.SpawnAssembly
 {
-    public class SpawnCardSystem :  ISystem
+    public class SpawnCardSystem :  EcsSystem
     {
-        public World World { get; set; }
-        
         private Filter _filter;
         private Stash<CardUiComponent> _stash;
         private Stash<TeamComponent> _teamStash;
         private MyUnitsPoolContainer unitsPoolContainer;
         
-        public void Dispose()
-        {
-            
-        }
-
-        public void OnAwake()
+        public override void OnAwake()
         {
             _filter = World.Filter.With<CardUiComponent>()
                 .Without<DisabledComponent>().Build();
@@ -32,7 +26,7 @@ namespace Gameplay.SpawnAssembly
                 .Resolve<MyUnitsPoolContainer>();
         }
         
-        public void OnUpdate(float deltaTime)
+        public override void OnUpdate(float deltaTime)
         {
             foreach (var entity in _filter)
             {

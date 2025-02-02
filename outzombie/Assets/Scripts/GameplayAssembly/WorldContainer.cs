@@ -2,6 +2,7 @@
 using Gameplay.AbilitiesAssembly;
 using Gameplay.EnemiesLogicAssembly;
 using Gameplay.EnemiesLogicAssembly.BreakThroughToBuilding;
+using Gameplay.LevelAssembly;
 using Gameplay.SpawnAssembly;
 using GameplayAssembly.HealthSystem;
 using Scellecs.Morpeh;
@@ -23,6 +24,7 @@ namespace Gameplay
             systemGroup.AddSystem(new MoveToTargetSystem());
             systemGroup.AddSystem(new MeleeAttackSystem());
             systemGroup.AddSystem(new HealthSystem());
+            systemGroup.AddSystem(new LevelEndSystem());
             world.AddSystemsGroup(order: 0, systemGroup);
         }
     }

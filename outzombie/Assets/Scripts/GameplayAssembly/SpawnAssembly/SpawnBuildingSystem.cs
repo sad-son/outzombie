@@ -2,6 +2,7 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Gameplay.EnemiesLogicAssembly;
+using Gameplay.Extensions;
 using Gameplay.ObjectPoolAssembly;
 using Gameplay.UnityComponents;
 using Scellecs.Morpeh;
@@ -10,10 +11,8 @@ using UnityEngine;
 
 namespace Gameplay.SpawnAssembly
 {
-    public class SpawnBuildingSystem  :  ISystem
+    public class SpawnBuildingSystem  :  EcsSystem
     {
-        public World World { get; set; }
-        
         private Filter _filter;
         private Stash<BuildingComponent> _stash;
         private Stash<TeamComponent> _teamStash;
@@ -23,13 +22,13 @@ namespace Gameplay.SpawnAssembly
         private bool _spawning;
         private CancellationTokenSource _cancellationTokenSource;
         
-        public void Dispose()
+        public override void Dispose()
         {
             _cancellationTokenSource?.Cancel();
             _cancellationTokenSource?.Dispose();
         }
 
-        public void OnAwake()
+        public override void OnAwake()
         {
             _filter = World.Filter.With<BuildingComponent>()
                 .Without<DisabledComponent>()
@@ -43,7 +42,7 @@ namespace Gameplay.SpawnAssembly
             _cancellationTokenSource =  new CancellationTokenSource();
         }
         
-        public void OnUpdate(float deltaTime)
+        public override void OnUpdate(float deltaTime)
         {
             if (_spawning)
                 return;

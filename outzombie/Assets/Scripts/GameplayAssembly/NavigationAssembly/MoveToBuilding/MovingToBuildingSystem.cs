@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using Gameplay.Extensions;
 using Gameplay.ObjectPoolAssembly;
 using Gameplay.SpawnAssembly;
 using Gameplay.UnityComponents;
@@ -7,10 +8,8 @@ using UnityEngine;
 
 namespace Gameplay.EnemiesLogicAssembly
 {
-    public class MovingToBuildingSystem : ISystem
+    public class MovingToBuildingSystem : EcsSystem
     {
-        public World World { get; set; }
-        
         private Filter _buildingsFilter;
         private Filter _enemiesFilter;
         private Filter _moveToBuildingFilter;
@@ -19,13 +18,8 @@ namespace Gameplay.EnemiesLogicAssembly
         private Stash<TransformComponent> _transformStash;
         private Stash<BuildingComponent> _buildingsStash;
         private Stash<MoveToBuildingComponent> _moveToBuildingStash;
-        
-        public void Dispose()
-        {
-            
-        }
 
-        public void OnAwake()
+        public override void OnAwake()
         {
             _buildingsFilter = World.Filter.With<BuildingComponent>()
                 .Without<DisabledComponent>().Build();
@@ -40,7 +34,7 @@ namespace Gameplay.EnemiesLogicAssembly
         }
 
        
-        public void OnUpdate(float deltaTime)
+        public override void OnUpdate(float deltaTime)
         {
             foreach (var moveToBuildingEntity in _moveToBuildingFilter)
             {

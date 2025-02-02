@@ -1,7 +1,4 @@
-﻿using System;
-using Plugins.procedural_healthbar_shader.HealthBar.Components;
-using Scellecs.Morpeh.Providers;
-using UnityEngine;
+﻿using Scellecs.Morpeh.Providers;
 
 namespace GameplayAssembly.HealthSystem
 {

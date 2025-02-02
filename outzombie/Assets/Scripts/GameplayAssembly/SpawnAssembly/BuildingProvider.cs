@@ -2,7 +2,8 @@
 
 namespace Gameplay.SpawnAssembly
 {
-    public class SpawnBuildingProvider : MonoProvider<BuildingComponent>
+    public class BuildingProvider : MonoProvider<BuildingComponent>
     {
+        
     }
 } 

@@ -19,7 +19,6 @@ namespace Gameplay.AbilitiesAssembly
 
         private void MeleeAttackCompleted()
         {
-            Debug.LogError($"SAD MeleeAttackCompleted");
             Finish();
         }
     }

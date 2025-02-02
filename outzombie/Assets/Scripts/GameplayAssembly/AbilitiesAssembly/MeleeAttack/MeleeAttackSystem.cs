@@ -1,4 +1,5 @@
 ﻿using Gameplay.EnemiesLogicAssembly;
+using Gameplay.Extensions;
 using Gameplay.ObjectPoolAssembly;
 using Gameplay.UnityComponents;
 using Scellecs.Morpeh;
@@ -6,10 +7,8 @@ using UnityEngine;
 
 namespace Gameplay.AbilitiesAssembly
 {
-    public class MeleeAttackSystem : ISystem
+    public class MeleeAttackSystem : EcsSystem
     {
-        public World World { get; set; }
-        
         private Filter _enemiesFilter;
         private Filter _meleeAttackTriggers;
         private Stash<MeleeAttackTriggerComponent> _triggerStash;
@@ -19,7 +18,7 @@ namespace Gameplay.AbilitiesAssembly
         private Stash<TransformComponent> _transformStash;
         private Stash<NavigationUnitComponent> _navigationUnitComponentStash;
         
-        public void OnAwake()
+        public override void OnAwake()
         {
             _enemiesFilter = World.Filter.With<TransformComponent>()
                 .Without<DisabledComponent>().Build();
@@ -33,13 +32,8 @@ namespace Gameplay.AbilitiesAssembly
             _triggerStash = World.GetStash<MeleeAttackTriggerComponent>();
             _navigationUnitComponentStash = World.GetStash<NavigationUnitComponent>();
         }
-        
-        public void Dispose()
-        {
-            
-        }
-        
-        public void OnUpdate(float deltaTime)
+
+        public override void OnUpdate(float deltaTime)
         {
             foreach (var meleeEntity in _meleeAttackTriggers)
             {
@@ -65,6 +59,7 @@ namespace Gameplay.AbilitiesAssembly
                     {
                         if (meleeAttackComponent.canHit)
                         {
+                            navigationUnitComponent.agent.updateRotation = false;
                             navigationUnitComponent.RotateToTarget(1f, enemyPosition);
                             ref var healthComponent = ref _healthStash.Get(enemyEntity);
   
@@ -83,6 +78,7 @@ namespace Gameplay.AbilitiesAssembly
 
                 if (!hasTarget)
                 {
+                    navigationUnitComponent.agent.updateRotation = true;
                     _triggerStash.Remove(meleeEntity);
                 }
             }

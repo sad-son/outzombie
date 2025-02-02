@@ -1,6 +1,7 @@
 ﻿using Scellecs.Morpeh;
 using Cysharp.Threading.Tasks;
 using Gameplay.AbilitiesAssembly;
+using Gameplay.Extensions;
 using Gameplay.ObjectPoolAssembly;
 using Gameplay.SpawnAssembly;
 using Gameplay.UnityComponents;
@@ -9,10 +10,8 @@ using UnityEngine;
 
 namespace Gameplay.EnemiesLogicAssembly.BreakThroughToBuilding
 {
-    public class MoveToTargetSystem : ISystem
+    public class MoveToTargetSystem : EcsSystem
     {
-         public World World { get; set; }
-        
         private Filter _enemiesFilter;
         private Filter _meleeComponentsFilter;
         private Filter _moveToTargetFilter;
@@ -22,7 +21,7 @@ namespace Gameplay.EnemiesLogicAssembly.BreakThroughToBuilding
         private Stash<TransformComponent> _transformStash;
         private Stash<MoveToTargetComponent> _moveToTargetStash;
         
-        public void OnAwake()
+        public override void OnAwake()
         {
             _enemiesFilter = World.Filter.With<TransformComponent>()
                 .Without<DisabledComponent>().Build();
@@ -34,12 +33,7 @@ namespace Gameplay.EnemiesLogicAssembly.BreakThroughToBuilding
             _moveToTargetStash = World.GetStash<MoveToTargetComponent>();
         }
         
-        public void Dispose()
-        {
-            
-        }
-        
-        public void OnUpdate(float deltaTime)
+        public override void OnUpdate(float deltaTime)
         {
             foreach (var moveToTargetEntity in _moveToTargetFilter)
             {
